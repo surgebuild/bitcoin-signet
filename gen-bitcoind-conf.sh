@@ -32,6 +32,7 @@ listen=1
 server=1
 discover=1
 signetchallenge=$SIGNETCHALLENGE
+signetblocktime=$SIGNETBLOCKTIME
 zmqpubrawblock=$ZMQPUBRAWBLOCK
 zmqpubrawtx=$ZMQPUBRAWTX
 zmqpubhashblock=$ZMQPUBHASHBLOCK
