@@ -1,4 +1,4 @@
-# Bitcoin Signet Docker Image
+# Bitcoin Surge Signet Docker Image
 
 ## 📌 Table of Contents
 
@@ -64,12 +64,18 @@ Bitcoin Signet provides a sandboxed environment for Bitcoin, allowing developers
 1. **Building the Docker Image**:
 
    ```bash
-   docker build -t bitcoin-signet .
+   docker build -t surge-signet .
    ```
 
 2. **Running the Docker Image**:
    ```bash
-   docker run -d --name bitcoin-signet-instance bitcoin-signet
+   docker network create surge-network 
+   docker run -d --name surge-signet-instance \
+   -e COOKIEFILE=true \
+   --network surge-network \
+   -v /path/to/bitcoin/data:/root/.bitcoin \
+   -p 38332:38332 \
+   surge-signet
    ```
 
 **Note**: Ensure you have Docker installed and running on your machine before executing the above commands. Adjust configurations as needed for your specific use case.
@@ -93,51 +99,49 @@ To make the most out of the Bitcoin Signet Docker image, here are some essential
 3. **Stop a running container**:
 
    ```bash
-   docker stop bitcoin-signet-instance
+   docker stop surge-signet-instance
    ```
 
 4. **Start a stopped container**:
 
    ```bash
-   docker start bitcoin-signet-instance
+   docker start surge-signet-instance
    ```
 
 5. **Remove a container**:
 
    ```bash
-   docker rm bitcoin-signet-instance
+   docker rm surge-signet-instance
    ```
 
 6. **View logs of a container**:
 
    ```bash
-   docker logs bitcoin-signet-instance
+   docker logs surge-signet-instance
    ```
 
 7. **Execute a command inside a running container**:
 
    ```bash
-   docker exec -it bitcoin-signet-instance /bin/bash
+   docker exec -it surge-signet-instance /bin/bash
    ```
 
 8. **Pull the latest version of the image**:
 
    ```bash
-   docker pull bitcoin-signet
+   docker pull surge-signet
    ```
 
 9. **Remove an image**:
 
    ```bash
-   docker rmi bitcoin-signet
+   docker rmi surge-signet
    ```
 
 10. **View all Docker images**:
     ```bash
     docker images
     ```
-
-Remember to replace `bitcoin-signet-instance` with the name of your container if you've named it differently.
 
 ## 📜 License
 
