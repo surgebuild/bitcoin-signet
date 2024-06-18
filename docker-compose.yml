@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  bitcoind:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["run.sh"]
+    environment:
+      - BITCOIN_DIR=/root/.bitcoin
+      - NBITS=${NBITS}
+      - SIGNETCHALLENGE=${SIGNETCHALLENGE}
+      - SIGNETBLOCKTIME=${SIGNETBLOCKTIME:-10}
+      - PRIVKEY=${PRIVKEY}
+      - RPCUSER=${RPCUSER:-bitcoin}
+      - RPCPASSWORD=${RPCPASSWORD:-bitcoin}
+      - COOKIEFILE=${COOKIEFILE:-true}
+      - ONIONPROXY=${ONIONPROXY}
+      - TORPASSWORD=${TORPASSWORD}
+      - TORCONTROL=${TORCONTROL}
+      - I2PSAM=${I2PSAM}
+      - UACOMMENT=${UACOMMENT:-CustomSignet}
+      - ZMQPUBRAWBLOCK=${ZMQPUBRAWBLOCK:-tcp://0.0.0.0:28332}
+      - ZMQPUBRAWTX=${ZMQPUBRAWTX:-tcp://0.0.0.0:28333}
+      - ZMQPUBHASHBLOCK=${ZMQPUBHASHBLOCK:-tcp://0.0.0.0:28334}
+      - RPCBIND=${RPCBIND:-0.0.0.0:38332}
+      - RPCALLOWIP=${RPCALLOWIP:-0.0.0.0/0}
+      - WHITELIST=${WHITELIST:-0.0.0.0/0}
+      - ADDNODE=${ADDNODE}
+      - BLOCKPRODUCTIONDELAY=${BLOCKPRODUCTIONDELAY:-10}
+      - MINERENABLED=${MINERENABLED:-1}
+    volumes:
+      - ../data/bitcoin:/root/.bitcoin
+    ports:
+      - "28332:28332"
+      - "28333:28333"
+      - "28334:28334"
+      - "38332:38332"
+      - "38333:38333"
+      - "38334:38334"
+    network_mode: "host"
