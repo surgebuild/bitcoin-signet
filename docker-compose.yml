@@ -9,7 +9,7 @@ services:
     environment:
       - BITCOIN_DIR=/root/.bitcoin
       - NBITS=${NBITS}
-      - SIGNETCHALLENGE=${SIGNETCHALLENGE}
+      - SIGNETCHALLENGE=${SIGNETCHALLENGE:-51210357c913f16c4b9f45a48864c2b6b8957f62deb845a16e6c7d3f7fcb8b3>
       - SIGNETBLOCKTIME=${SIGNETBLOCKTIME:-10}
       - PRIVKEY=${PRIVKEY}
       - RPCUSER=${RPCUSER:-bitcoin}
@@ -26,9 +26,10 @@ services:
       - RPCBIND=${RPCBIND:-0.0.0.0:38332}
       - RPCALLOWIP=${RPCALLOWIP:-0.0.0.0/0}
       - WHITELIST=${WHITELIST:-0.0.0.0/0}
-      - ADDNODE=${ADDNODE}
+      - ADDNODE=${ADDNODE:-signet.surge.dev:38333}
       - BLOCKPRODUCTIONDELAY=${BLOCKPRODUCTIONDELAY:-10}
-      - MINERENABLED=${MINERENABLED:-1}
+      - MINERENABLED=${MINERENABLED:-0}
+      - BITCOIN_DATA=../data/bitcoin
     volumes:
       - ../data/bitcoin:/root/.bitcoin
     ports:
@@ -38,4 +39,3 @@ services:
       - "38332:38332"
       - "38333:38333"
       - "38334:38334"
-    network_mode: "host"
