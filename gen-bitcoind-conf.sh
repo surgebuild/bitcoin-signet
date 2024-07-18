@@ -39,7 +39,9 @@ zmqpubhashblock=$ZMQPUBHASHBLOCK
 rpcbind=$RPCBIND
 rpcallowip=$RPCALLOWIP
 whitelist=$WHITELIST
-fallbackfee=0.0002"
+fallbackfee=0.0002
+bind=0.0.0.0
+port=38333"
 
 if [[ "$ADDNODE" != "" ]]; then
     echo $ADDNODE | tr ',' '\n' | while read node; do

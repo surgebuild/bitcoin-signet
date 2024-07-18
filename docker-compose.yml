@@ -1,5 +1,10 @@
 version: '3.8'
 
+networks:
+  default:
+    name: surge-network
+    driver: bridge
+
 services:
   bitcoind:
     build:
@@ -38,4 +43,3 @@ services:
       - "38332:38332"
       - "38333:38333"
       - "38334:38334"
-    network_mode: "host"
