@@ -27,9 +27,10 @@ services:
       - RPCBIND=${RPCBIND:-0.0.0.0:38332}
       - RPCALLOWIP=${RPCALLOWIP:-0.0.0.0/0}
       - WHITELIST=${WHITELIST:-0.0.0.0/0}
-      - ADDNODE=${ADDNODE:-signet.surge.dev:38333}
+      - ADDNODE=${ADDNODE:-192.241.131.95:38333}
       - BLOCKPRODUCTIONDELAY=${BLOCKPRODUCTIONDELAY:-10}
-      - MINERENABLED=${MINERENABLED:-0}
+      - MINERENABLED=${MINERENABLED:-1}
+      - MINETO=${MINETO:-"tb1qpynphh688rqnaek73pqm5759vzl53myua3gd25"}
       - BITCOIN_DATA=../data/bitcoin
     volumes:
       - ../data/bitcoin:/root/.bitcoin
