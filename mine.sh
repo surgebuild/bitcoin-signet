@@ -2,7 +2,13 @@
 NBITS=${NBITS:-"1e0377ae"} #minimum difficulty in signet
 
 while true; do
-    ADDR=${MINETO:-$(bitcoin-cli getnewaddress)}
+    if [ -n "$MINETO" ]; then
+        ADDR=$MINETO
+        echo "Using specified mining address: $ADDR"
+    else
+        ADDR=$(bitcoin-cli getnewaddress)
+        echo "Generated new mining address: $ADDR"
+    fi
     if [[ -f "${BITCOIN_DIR}/BLOCKPRODUCTIONDELAY.txt" ]]; then
         BLOCKPRODUCTIONDELAY_OVERRIDE=$(cat ~/.bitcoin/BLOCKPRODUCTIONDELAY.txt)
         echo "Delay OVERRIDE before next block" $BLOCKPRODUCTIONDELAY_OVERRIDE "seconds."
